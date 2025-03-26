@@ -34,12 +34,6 @@ public class Teamwork
         details[10] = "Hasan";
         details[11] = "Nouh";
         details[12] = "23021813";
-
-	
-	   // only if applicable
-        details[13] = "surname of member5";
-        details[14] = "first name of member5";
-        details[15] = "SRN of member5";
 	
 	   // only if applicable
         details[13] = "surname of member5";
