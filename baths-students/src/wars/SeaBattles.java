@@ -16,7 +16,7 @@ public class SeaBattles implements BATHS
 
     private String admiral;
     private double warChest;
-    
+
 
 
 //**************** BATHS ************************** 
@@ -74,6 +74,13 @@ public class SeaBattles implements BATHS
      */
     public boolean isDefeated()
     {
+        if (warChest <= 0 && getSquadron() == "No ships")
+        {
+            return true;
+        }else if (warChest <= 0 && getReserveFleet() == "No ships")
+        {
+            return true;
+        }
         return false;
     }
     
