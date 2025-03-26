@@ -196,8 +196,8 @@ public class SeaBattles implements BATHS
      **/
     public boolean isInSquadron(String nme)
     {
-        
-        return false;
+        return squadron.containsKey(nme); // checks if the squadron map has an entry with the key matching nme
+     
     }
     
     /** Decommissions a ship from the squadron to the reserve fleet (if they are in the squadron)
