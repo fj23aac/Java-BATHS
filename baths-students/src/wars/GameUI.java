@@ -75,7 +75,7 @@ public class GameUI
 //            {
 //                System.out.println("Recommission from file");
 //                SeaBattles myBattles2=null;
-//                myBattles2.loadGame("olenka.dat");
+//                myBattles2 = myBattles.loadGame("olenka.dat");
 //                System.out.println(myBattles2.toString());               
 //            }  
         }
