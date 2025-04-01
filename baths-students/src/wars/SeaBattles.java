@@ -117,8 +117,11 @@ public class SeaBattles implements BATHS
      **/
     public String getReserveFleet()
     {   //assumes reserves is a Hashmap
-       
-        return "No ships";
+        if (!reserveFleet.isEmpty())
+        {
+          return reserveFleet.keySet().toString();
+        }
+     return "No ships";
     }
     
     /**Returns a String representation of the ships in the admiral's squadron
@@ -128,7 +131,10 @@ public class SeaBattles implements BATHS
     public String getSquadron()
     {
    
-        
+        if (!squadron.isEmpty())
+            {
+               return squadron.keySet().toString();
+            }
         return "No ships";
     }
     
@@ -137,7 +143,10 @@ public class SeaBattles implements BATHS
      **/
     public String getSunkShips()
     {
-       
+        if (!sunkShips.isEmpty())
+         {
+           return String.join(", ", sunkShips);
+         }
         return "No ships";
     }
     
@@ -147,9 +156,10 @@ public class SeaBattles implements BATHS
      **/
     public String getAllShips()
     {
-  
-        
-        return "No ships";
+     if (!(reserveFleet.isEmpty() && squadron.isEmpty() && sunkShips.isEmpty())) // Inverted condition
+        {
+        return "Reserve Fleet: " + getReserveFleet() + ", Squadron: " + getSquadron() + ", Sunk Ships: " + getSunkShips(); // Return if any fleet has ships
+        }
     }
     
     
@@ -159,8 +169,15 @@ public class SeaBattles implements BATHS
     public String getShipDetails(String nme)
     {
  
-        
-        
+        if (squadron.containsKey(nme))
+        {
+            return squadron.get(nme).toString();
+        }
+        else if (reserveFleet.containsKey(nme))
+        {
+            return reserveFleet.get(nme).toString();
+        }
+     
         return "\nNo such ship";
     }     
  
