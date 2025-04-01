@@ -18,6 +18,7 @@ public class SeaBattles implements BATHS
     private double warChest;
 
 
+
 //**************** BATHS ************************** 
     /** Constructor requires the name of the admiral
      * @param adm the name of the admiral
@@ -55,8 +56,14 @@ public class SeaBattles implements BATHS
      **/
     public String toString()
     {
-        
-        return "null";
+        String s = "";
+        s = s + "   State of the game";
+        s = s + "   Admiral: " + admiral + "\n";
+        s = s + "   Warchest: " + getWarChest() + "\n";
+        s = s + "   Defeated: " + isDefeated()+ "\n";
+        s = s + "   Ships in squadron: " + getSquadron() + "\n";
+        s = s + "   ships in the reserve fleet: " + getReserveFleet() + "\n";
+        return s;
     }
     
     
@@ -67,6 +74,13 @@ public class SeaBattles implements BATHS
      */
     public boolean isDefeated()
     {
+        if (warChest <= 0 && getSquadron() == "No ships")
+        {
+            return true;
+        }else if (warChest <= 0 && getReserveFleet() == "No ships")
+        {
+            return true;
+        }
         return false;
     }
     
