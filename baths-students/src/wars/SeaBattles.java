@@ -74,10 +74,10 @@ public class SeaBattles implements BATHS
      */
     public boolean isDefeated()
     {
-        if (warChest <= 0 && getSquadron() == "No ships")
+        if (warChest <= 0 && "No ships".equals(getSquadron()))
         {
             return true;
-        }else if (warChest <= 0 && getReserveFleet() == "No ships")
+        }else if (warChest <= 0 && "No ships".equals(getReserveFleet()))
         {
             return true;
         }
