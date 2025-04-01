@@ -16,6 +16,24 @@ public class SeaBattles implements BATHS
 
     private String admiral;
     private double warChest;
+    private String admiral;
+    private double warChest;
+    private HashMap <String, Ship> reserveFleet = new HashMap<>(); 
+    private HashMap <String, Ship> squadron = new HashMap<>();
+    private HashMap <String, Encounter> encounters = new HashMap<>();
+    private List <String> sunkShips = new ArrayList<>();
+
+  public class Ship {
+    public static void main(String[] args) {
+        System.out.println("");
+    }
+}
+
+  public class Encounter {
+      public static void main(String[] args) {
+          System.out.println("");
+     }
+}
 
 
 
@@ -25,8 +43,8 @@ public class SeaBattles implements BATHS
      */  
     public SeaBattles(String adm)
     {
-      
-        
+       this.admiral = adm;
+       this.warChest = 1000.0;        
        setupShips();
        setupEncounters();
     }
@@ -38,9 +56,10 @@ public class SeaBattles implements BATHS
      */  
     public SeaBattles(String admir, String filename)  //Task 3
     {
-      
-        
+       this.admiral = adm;
+       this.warChest = 1000.0;
        setupShips();
+       readEncounters(filename);
        // setupEncounters();
        // uncomment for testing Task 
        // readEncounters(filename);
