@@ -42,23 +42,42 @@ public class GameUI
             else if (choice == 4)
             {
                 //write your code here
+                System.out.println("Enter Ship name");
+                myIn.nextLine();
+                String ref = (myIn.nextLine()).trim();
+                String out = processCommissionResult(myBattles.commissionShip(ref));
+                System.out.println(out);
 
             }
             else if (choice == 5)
             {
        	       //write your code here
+                System.out.println("Enter Encounter number");
+                int ref = myIn.nextInt();
+                String out = processEncounterResult(myBattles.fightEncounter(ref));
+                System.out.println(out);
        
                   
             }
             else if (choice ==6)
             {
 	        //write your code here
+                System.out.println("Enter Ship name to restore");
+                myIn.nextLine();
+                String ref = (myIn.nextLine()).trim();
+                String out = processRestoreResult(myBattles.restoreShip(ref));
+                System.out.println(out);
 
 
             }
             else if (choice == 7)
             {
                 //write your code here
+                System.out.println("Enter Ship name to decommission");
+                myIn.nextLine();
+                String ref = (myIn.nextLine()).trim();
+                String out = processDecommissionResult(myBattles.decommissionShip(ref));
+                System.out.println(out);
 
 
             }
@@ -105,6 +124,92 @@ public class GameUI
         }
         return choice;        
     } 
+    
+    private String processCommissionResult(int res) {
+        String out = "No such result";
+        if (res == -1) {
+            out = "No such ship";
+        }
+        if(res == 0) {
+            out = "Ship successfully commissioned to squadron";
+        }
+        if (res == 1) {
+            out = "Ship is not in reserve fleet";
+        }
+        if (res == 2) {
+            out = "Not enough funds available";
+        }
+        return out;
+    }
+    
+    /** Returns details of the encounter result.
+     * @param res result of fighting the encounter
+     * @return string output of the result of the encounter
+     **/
+    private String processEncounterResult(int res) {
+        String out;
+        if (res == 0) {
+            out = "Encounter won";
+        }
+        else if (res == 1) {
+            out = "Encounter lost on battle strength";
+        }
+        else if (res == 2) {
+            out = "Encounter lost as no ship available";
+        }
+        else if (res == 3) {
+            out = "Encounter lost with no further resources. You lose the game";
+        }
+        else if (res == -1) {
+            out = "No such encounter";
+        }
+        else {
+            out = "No such result";
+        }
+        return out;
+    }
+    
+    /** Returns details of the restore result.
+     * @param res result of restoring a ship
+     * @return string output of the result of the restore
+     **/
+    private String processRestoreResult(int res) {
+        String out = "No such result";
+        if (res == -1) {
+            out = "No such ship";
+        }
+        if (res == 0) {
+            out = "Ship successfully restored";
+        }
+        if (res == 1) {
+            out = "Ship cannot be restored";
+        }
+        if (res == 2) {
+            out = "Not enough funds to restore ship";
+        }
+        return out;
+    }
+    
+    /** Returns details of the decommission result.
+     * @param res result of decommissioning a ship
+     * @return string output of the result of the decommission
+     **/
+    private String processDecommissionResult(int res) {
+        String out = "No such result";
+        if (res == -1) {
+            out = "No such ship";
+        }
+        if (res == 0) {
+            out = "Ship is decommissioned to reserve fleet";
+        }
+        if (res == 1) {
+            out = "Ship you are trying to decommission is damaged";
+        }
+        if (res == 2) {
+            out = "Ship you are trying to decommission is not in your squadron";
+        }
+        return out;
+    }
     
     public static void main(String[] args)
     {

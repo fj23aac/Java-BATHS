@@ -9,7 +9,7 @@ package wars;
  */
 public class Teamwork
 {
-    private String[] details = new String[12];
+    private String[] details = new String[13];
     
     public Teamwork()
     {   // in each line replace the contents of the String 
@@ -35,10 +35,7 @@ public class Teamwork
         details[11] = "Nouh";
         details[12] = "23021813";
 	
-	   // only if applicable
-        details[13] = "surname of member5";
-        details[14] = "first name of member5";
-        details[15] = "SRN of member5";
+	   
 
 
     }
