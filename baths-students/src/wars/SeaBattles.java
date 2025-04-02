@@ -108,7 +108,7 @@ public class SeaBattles implements BATHS
      */
     public double getWarChest()
     {
-        return 0;
+        return warChest;
     }
     
     
