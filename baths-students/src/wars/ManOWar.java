@@ -1,24 +1,25 @@
 package wars;
 
-import java.io.*;
 /**
- * Enumeration class EncounterType - write a description of the enum class here
- * 
- * @author A.Marczyk
- * @version 12/02/2025
+ * Class representing a Man-O-War ship
+ * @author TEAM85
+ * @version 1.2
  */
-public enum EncounterType implements Serializable
-{
-    BLOCKADE(" Blockade"), BATTLE(" Battle"), SKIRMISH (" Skirmish"), INVALID (" Invalid");
-    private String type;
-    
-    private EncounterType(String ty)
-    {
-        type = ty;
+public class ManOWar extends Ship {
+    private int decks;
+    private int marines;
+
+    public ManOWar(String name, String captain, int commissionFee, int skillLevel, int decks, int marines) {
+        super(name, captain, commissionFee, skillLevel);
+        this.decks = decks;
+        this.marines = marines;
     }
-    
-    public String toString()
-    {
-        return type;
+
+    public boolean canFight(EncounterType type) {
+        return type == EncounterType.BATTLE || type == EncounterType.BLOCKADE;
+    }
+
+    public String toString() {
+        return super.toString() + " [Decks: " + decks + ", Marines: " + marines + "]";
     }
 }

@@ -1,24 +1,54 @@
 package wars;
-
 import java.io.*;
+
 /**
- * Enumeration class EncounterType - write a description of the enum class here
+ * Abstract class representing a ship in the game
  * 
- * @author A.Marczyk
- * @version 12/02/2025
+ * @author TEAM85
+ * @version 1.3
  */
-public enum EncounterType implements Serializable
-{
-    BLOCKADE(" Blockade"), BATTLE(" Battle"), SKIRMISH (" Skirmish"), INVALID (" Invalid");
-    private String type;
-    
-    private EncounterType(String ty)
-    {
-        type = ty;
+public abstract class Ship implements Serializable {
+    private String name;
+    private String captain;
+    private int commissionFee;
+    private int skillLevel;
+    private ShipState state;
+
+    public Ship(String name, String captain, int commissionFee, int skillLevel) {
+        this.name = name;
+        this.captain = captain;
+        this.commissionFee = commissionFee;
+        this.skillLevel = skillLevel;
+        this.state = ShipState.RESERVE;
     }
-    
-    public String toString()
-    {
-        return type;
+
+    public String getName() {
+        return name;
+    }
+
+    public String getCaptain() {
+        return captain;
+    }
+
+    public int getCommissionFee() {
+        return commissionFee;
+    }
+
+    public int getSkillLevel() {
+        return skillLevel;
+    }
+
+    public ShipState getState() {
+        return state;
+    }
+
+    public void setState(ShipState state) {
+        this.state = state;
+    }
+
+    public abstract boolean canFight(EncounterType type);
+
+    public String toString() {
+        return name + " (" + captain + ") - " + state + " [Skill: " + skillLevel + ", Fee: " + commissionFee + "]";
     }
 }

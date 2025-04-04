@@ -150,12 +150,13 @@ public interface BATHS extends Serializable
 //     /** Writes whole game to the specified file
 //      * @param fname name of file storing requests
 //      */
-//     public void saveGame(String fname);
+    public void saveGame(String fname);
 //     
 //     /** reads all information about the game from the specified file 
 //      * and returns an SeaBattles object
 //      * @param fname name of file storing the game
 //      * @return the game (as a SeaBattles object)
 //      */
-//     public SeaBattles loadGame(String fname);
+    public SeaBattles loadGame(String fname);
+
 }
