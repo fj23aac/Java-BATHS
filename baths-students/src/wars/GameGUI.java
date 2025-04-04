@@ -3,12 +3,6 @@ import java.awt.*;
 import javax.swing.*;
 import java.awt.event.*;
 
-/**
- * Provide a GUI interface for the game
- * 
- * @author TEAM85
- * @version 1.5
- */
 public class GameGUI 
 {
     private BATHS gp = new SeaBattles("Fred");
@@ -21,6 +15,8 @@ public class GameGUI
     private JButton quitBtn = new JButton("Quit");
     private JButton warChestBtn = new JButton("View War Chest");
     private JButton commissionShipBtn = new JButton("Commission Ship");
+    private JButton restoreShipBtn = new JButton("Restore Ship"); 
+    private JButton decommissionShipBtn = new JButton("Decommission Ship");
     private JButton saveGameBtn = new JButton("Save Game");
     private JButton loadGameBtn = new JButton("Load Game");
     private JPanel eastPanel = new JPanel();
@@ -35,31 +31,37 @@ public class GameGUI
         myFrame.add(listing, BorderLayout.CENTER);
         listing.setVisible(false);
         myFrame.add(eastPanel, BorderLayout.EAST);
-        eastPanel.setLayout(new GridLayout(8, 1)); // Adjusted to fit the new buttons
+        eastPanel.setLayout(new GridLayout(10, 1)); 
         eastPanel.add(viewBtn);
         eastPanel.add(fightBtn);
         eastPanel.add(clearBtn);
         eastPanel.add(warChestBtn);
-        eastPanel.add(commissionShipBtn); // Added commission ship button
-        eastPanel.add(saveGameBtn); // Added save game button
-        eastPanel.add(loadGameBtn); // Added load game button
+        eastPanel.add(commissionShipBtn);
+        eastPanel.add(restoreShipBtn); 
+        eastPanel.add(decommissionShipBtn); 
+        eastPanel.add(saveGameBtn);
+        eastPanel.add(loadGameBtn);
         eastPanel.add(quitBtn);
         clearBtn.addActionListener(new ClearBtnHandler());
         fightBtn.addActionListener(new FightBtnHandler());
         quitBtn.addActionListener(new QuitBtnHandler());
         viewBtn.addActionListener(new ViewStateHandler());
         warChestBtn.addActionListener(new WarChestBtnHandler());
-        commissionShipBtn.addActionListener(new CommissionShipHandler()); // Added action listener
-        saveGameBtn.addActionListener(new SaveGameHandler()); // Added action listener
-        loadGameBtn.addActionListener(new LoadGameHandler()); // Added action listener
+        commissionShipBtn.addActionListener(new CommissionShipHandler());
+        restoreShipBtn.addActionListener(new RestoreShipHandler()); 
+        decommissionShipBtn.addActionListener(new DecommissionShipHandler()); 
+        saveGameBtn.addActionListener(new SaveGameHandler());
+        loadGameBtn.addActionListener(new LoadGameHandler());
         fightBtn.setVisible(true);
         clearBtn.setVisible(true);
         quitBtn.setVisible(true);
         viewBtn.setVisible(true);
         warChestBtn.setVisible(true);
-        commissionShipBtn.setVisible(true); // Set visibility
-        saveGameBtn.setVisible(true); // Set visibility
-        loadGameBtn.setVisible(true); // Set visibility
+        commissionShipBtn.setVisible(true);
+        restoreShipBtn.setVisible(true); 
+        decommissionShipBtn.setVisible(true); 
+        saveGameBtn.setVisible(true);
+        loadGameBtn.setVisible(true);
         JScrollPane scrollPane = new JScrollPane(listing);
         myFrame.getContentPane().add(scrollPane);
         myFrame.pack();
@@ -75,7 +77,6 @@ public class GameGUI
         menubar.add(encounterMenu);
         JMenu fileMenu = new JMenu("File");
         menubar.add(fileMenu);
-
         JMenuItem listShipItem = new JMenuItem("List reserve Ships");
         JMenuItem listSquadronItem = new JMenuItem("List Squadron");
         JMenuItem viewShipItem = new JMenuItem("View Ship");
@@ -83,7 +84,6 @@ public class GameGUI
         JMenuItem listEncountersItem = new JMenuItem("List All Encounters");
         JMenuItem saveGameItem = new JMenuItem("Save Game");
         JMenuItem loadGameItem = new JMenuItem("Load Game");
-
         commissionShipItem.addActionListener(new CommissionShipHandler());
         viewShipItem.addActionListener(new ViewShipHandler());
         listSquadronItem.addActionListener(new ListSquadronHandler());
@@ -91,7 +91,6 @@ public class GameGUI
         listEncountersItem.addActionListener(new ListAllEncountersHandler());
         saveGameItem.addActionListener(new SaveGameHandler());
         loadGameItem.addActionListener(new LoadGameHandler());
-
         shipMenu.add(commissionShipItem);
         shipMenu.add(viewShipItem);
         shipMenu.add(listSquadronItem);
@@ -179,6 +178,22 @@ public class GameGUI
             }
         }
     }
+    
+    private class RestoreShipHandler implements ActionListener {
+        public void actionPerformed(ActionEvent e) {
+            String shipName = JOptionPane.showInputDialog("Ship name to restore: ");
+            gp.restoreShip(shipName);
+            JOptionPane.showMessageDialog(myFrame, "Ship restored: " + shipName);
+        }
+    }
+
+    private class DecommissionShipHandler implements ActionListener {
+        public void actionPerformed(ActionEvent e) {
+            String shipName = JOptionPane.showInputDialog("Ship name to decommission: ");
+            String result = gp.decommissionShip(shipName) ? "Ship decommissioned: " + shipName : "Failed to decommission ship: " + shipName;
+            JOptionPane.showMessageDialog(myFrame, result);
+        }
+    }
 
     private class SaveGameHandler implements ActionListener {
         public void actionPerformed(ActionEvent e) {
@@ -217,3 +232,4 @@ public class GameGUI
         new GameGUI();
     }
 }
+
